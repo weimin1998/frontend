@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+</head>
+<body>
+    <!-- form，收集表单数据，只有有name属性的表单项数据，才会被发送给服务器 -->
+    <!-- action，表单的数据要提交到服务器的地址 -->
+    <form action="https://www.baidu.com/s">
+        <input type="text" name="wd">
+        <input type="submit" value="搜索">
+    </form>
+
+    <br>
+
+    <form action="http://localhost:8081/index" method="get">
+        <input type="text" name="user">
+        <input type="text" name="param1">
+        <input type="text" name="param2">
+        <input type="submit" value="提交">
+    </form>
+
+    常见表单项
+    <br>
+    <!-- method，表单只能发送get和post的请求 -->
+    <!-- get和post的区别就是，表单在提交数据时，数据的在请求中的位置不同 -->
+    <form action="http://localhost:8081/form" method="post" enctype="multipart/form-data">
+        <!--value，默认值  -->
+        文本框: <input type="text" name="user" value="user"><br>
+        密码框: <input type="password" name="password" value="pwd"><br>
+        隐藏框: <input type="hidden" name="hiddenField" value="hidden"><br>
+        日期框: <input type="date" name="birthday"><br>
+        单选: 
+        <input type="radio" name="sex" value="男">男
+        <input type="radio" name="sex" value="女" checked>女 
+        <br>
+        多选:
+        <input type="checkbox" name="fav" value="听歌">听歌
+        <input type="checkbox" name="fav" value="游戏">游戏
+        <input type="checkbox" name="fav" value="锻炼">锻炼
+        <br>
+
+        <!-- 文件上传比较特殊，必须指定表单属性，method="post" enctype="multipart/form-data" -->
+
+        <!-- enctype，用来指定Content-Type 默认是 application/x-www-form-urlencoded，
+            x-www-form-urlencoded这种类型，不管是get还是post请求方式，参数都会以"param1=value1&param2=value2&param3=value3"的格式发送，并且发送之前，特殊字符和汉字都会先url编码；
+            url编码的细节：使用utf-8编码，将字符转换为对应的字节，计算每个字节的十六进制，前面加个百分号，最后拼起来；
+            比如发送的数据是：user=张&param1=1&param2=2
+            url编码为：user=%E5%BC%A0&param1=1&param2=2
+        -->
+
+        <!--
+            multipart/form-data，表示请求的数据是由多部分组成的，既然是多个部分就需要分隔符来分割各个部分，使用boundary来指定分隔符；
+            每个部分的格式是固定的:
+            Content-Disposition: form-data; name="paramName"
+            [other req header]
+
+            paramValue
+
+            虽然这种格式看着复杂，但是在springmvc中，只要在目标方法中使用paramName来接收即可，不需要画蛇添足使用@RequestBody注解；
+
+
+         -->
+        文件上传: <input type="file" name="avatar">
+
+        <br>
+        按钮: <input type="submit" value="提交"><br>
+    </form>
+
+
+</body>
+</html>

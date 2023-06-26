@@ -1,0 +1,17 @@
+/* type选择器，根据标签名进行匹配（元素选择器） */
+p {
+    background-color: rgb(77, 112, 101);
+}
+
+/* class选择器，根据元素标签的class属性进行匹配 */
+.c2 {
+    background-color: aquamarine;
+}
+
+/* id选择器 */
+#p3 {
+    background-color: brown;
+    display: none;
+}
+
+/* 其中id选择器的优先级最高，其次是class选择器，最后是type选择器 */
