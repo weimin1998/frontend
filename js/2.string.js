@@ -7,5 +7,6 @@ let age = 22;
 
 let resurt = `username: ${username}, age: ${age}`;
 
-console.log(resurt);
+console.log(resurt); 
+
 
